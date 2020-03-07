@@ -54,10 +54,10 @@ namespace EntityFrameworkCore
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            //using (var db = new Testcontext())
-            //{
-            //    db.Database.EnsureCreated();
-            //}
+            using (var db = new Testcontext())
+            {
+                db.Database.EnsureCreated();
+            }
 
             app.UseMvc(routes =>
             {

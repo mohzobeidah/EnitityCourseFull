@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 namespace EntityFrameworkCore.Data
 {
     // many to many relationShip
+    [Table("Teachers")]
     public class Teachers
     {
         [Key]
+
         public int TeacherID { get; set; }
         public string Name { get; set; }
 
-        // public ICollection<Course> courses { get; set; }// this work for Enitiy before Core 
+        //public ICollection<Course> courses { get; set; }// this work for Enitiy before Core 
        
         public ICollection<Teacher_Course> Course_Relation { get; set; }
 
@@ -25,6 +27,9 @@ namespace EntityFrameworkCore.Data
     {
         [Key]
         public int CourseId { get; set; }
+        [Required]
+        [MinLength(0)]
+        [MaxLength(10)]
         public string Name { get; set; }
 
         // public ICollection<Teachers> teachers { get; set; }// this work for Enitiy before Core 
@@ -44,6 +49,8 @@ namespace EntityFrameworkCore.Data
 
         [ForeignKey(nameof(CourseIdFK))]
         public  Course Course { get; set; }
+        [Range(0 ,10)]
+        [Column("TeacherHours",Order =2,TypeName ="int")]
         public  float Hours { get; set; }
 
     }
